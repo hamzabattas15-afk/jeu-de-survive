@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/campfire.gd" id="1_campfire"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_logs"]
+albedo_color = Color(0.24, 0.12, 0.055, 1)
+metallic_specular = 0.0
+roughness = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_log"]
+material = SubResource("StandardMaterial3D_logs")
+top_radius = 0.1
+bottom_radius = 0.12
+height = 1.4
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_campfire"]
+radius = 0.9
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flame"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_flame"]
+material = SubResource("StandardMaterial3D_flame")
+size = Vector3(0.16, 0.22, 0.16)
+
+[sub_resource type="Gradient" id="Gradient_flame"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(1, 0.85, 0.25, 0.9, 1, 0.3, 0.04, 0.8, 0.7, 0.08, 0.01, 0)
+
+[node name="Campfire" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_campfire")
+
+[node name="Logs" type="Node3D" parent="."]
+
+[node name="Log01" type="MeshInstance3D" parent="Logs"]
+position = Vector3(0, 0.14, -0.3)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_log")
+
+[node name="Log02" type="MeshInstance3D" parent="Logs"]
+position = Vector3(0, 0.14, 0.3)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_log")
+
+[node name="Log03" type="MeshInstance3D" parent="Logs"]
+position = Vector3(-0.3, 0.36, 0)
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("CylinderMesh_log")
+
+[node name="Log04" type="MeshInstance3D" parent="Logs"]
+position = Vector3(0.3, 0.36, 0)
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("CylinderMesh_log")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.25, 0)
+shape = SubResource("CylinderShape3D_campfire")
+
+[node name="Fire" type="CPUParticles3D" parent="."]
+position = Vector3(0, 0.35, 0)
+cast_shadow = 0
+amount = 16
+lifetime = 0.9
+preprocess = 0.9
+local_coords = true
+fixed_fps = 20
+mesh = SubResource("BoxMesh_flame")
+emission_shape = 1
+emission_sphere_radius = 0.22
+direction = Vector3(0, 1, 0)
+spread = 12.0
+gravity = Vector3(0, 0.45, 0)
+initial_velocity_min = 0.7
+initial_velocity_max = 1.3
+scale_amount_min = 0.6
+scale_amount_max = 1.4
+color_ramp = SubResource("Gradient_flame")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+position = Vector3(0, 0.85, 0)
+light_color = Color(1, 0.55, 0.2, 1)
+light_energy = 1.5
+shadow_enabled = false
+distance_fade_enabled = true
+distance_fade_begin = 15.0
+distance_fade_length = 5.0
+omni_range = 4.0
+omni_attenuation = 2.0
+
+[node name="CookingTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

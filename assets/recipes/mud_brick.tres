@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/recipe.gd" id="1_recipe"]
+[resource]
+script = ExtResource("1_recipe")
+name = "Mud Brick"
+ingredients = {"dirt": 2, "straw": 1, "clean_water": 1}
+result_item = "mud_brick"
+amount = 1

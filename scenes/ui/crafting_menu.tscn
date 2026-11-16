@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/crafting_menu.gd" id="1_menu"]
+[ext_resource type="Script" path="res://scripts/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" path="res://assets/recipes/wooden_spear.tres" id="3_spear"]
+[ext_resource type="Resource" path="res://assets/recipes/stone_axe.tres" id="4_axe"]
+[ext_resource type="Resource" path="res://assets/recipes/torch.tres" id="5_torch"]
+[ext_resource type="Resource" path="res://assets/recipes/campfire.tres" id="6_campfire"]
+
+[ext_resource type="Resource" path="res://assets/recipes/water_filter.tres" id="7_filter"]
+[ext_resource type="Resource" path="res://assets/recipes/mud_brick.tres" id="8_brick"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.07, 0.09, 0.08, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.34, 0.28, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[node name="CraftingMenu" type="PanelContainer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+script = ExtResource("1_menu")
+recipes = Array[ExtResource("2_recipe")]([ExtResource("3_spear"), ExtResource("4_axe"), ExtResource("5_torch"), ExtResource("6_campfire"), ExtResource("7_filter"), ExtResource("8_brick")])
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Crafting"
+
+[node name="CloseButton" type="Button" parent="Content/Header"]
+layout_mode = 2
+focus_mode = 0
+text = "Close"
+
+[node name="HintLabel" type="Label" parent="Content"]
+layout_mode = 2
+text = "Costs shown per craft. C / Esc to close."
+
+[node name="RecipeScroll" type="ScrollContainer" parent="Content"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RecipeList" type="VBoxContainer" parent="Content/RecipeScroll"]
+size_flags_horizontal = 3
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatusLabel" type="Label" parent="Content"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/water_filter.gd" id="1_script"]
+
+[sub_resource type="StandardMaterial3D" id="material"]
+albedo_color = Color(0.35, 0.48, 0.52, 1)
+metallic_specular = 0.0
+roughness = 1.0
+[sub_resource type="BoxMesh" id="mesh"]
+material = SubResource("material")
+size = Vector3(0.8, 1.2, 0.8)
+[sub_resource type="BoxShape3D" id="shape"]
+size = Vector3(0.8, 1.2, 0.8)
+[node name="WaterFilter" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.6, 0)
+mesh = SubResource("mesh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.6, 0)
+shape = SubResource("shape")
+
+[node name="PurificationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

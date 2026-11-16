@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/recipe.gd" id="1_recipe"]
+[resource]
+script = ExtResource("1_recipe")
+name = "Water Filter"
+ingredients = {"wood": 5, "stone": 3}
+result_item = "water_filter"
+amount = 1

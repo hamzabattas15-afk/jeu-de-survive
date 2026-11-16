@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/stats_hud.gd" id="1_stats_hud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_background"]
+bg_color = Color(0.06, 0.07, 0.08, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health"]
+bg_color = Color(0.8, 0.22, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hunger"]
+bg_color = Color(0.85, 0.58, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thirst"]
+bg_color = Color(0.2, 0.58, 0.88, 1)
+
+[node name="StatsHUD" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -188.0
+offset_right = 276.0
+offset_bottom = -16.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 8
+script = ExtResource("1_stats_hud")
+
+[node name="Health" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="ValueLabel" type="Label" parent="Health"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 4
+text = "Health: 100 / 100"
+
+[node name="Bar" type="ProgressBar" parent="Health"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health")
+max_value = 100.0
+step = 0.01
+value = 100.0
+show_percentage = false
+
+[node name="Hunger" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="ValueLabel" type="Label" parent="Hunger"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 4
+text = "Hunger: 100 / 100"
+
+[node name="Bar" type="ProgressBar" parent="Hunger"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hunger")
+max_value = 100.0
+step = 0.01
+value = 100.0
+show_percentage = false
+
+[node name="Thirst" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="ValueLabel" type="Label" parent="Thirst"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 4
+text = "Thirst: 100 / 100"
+
+[node name="Bar" type="ProgressBar" parent="Thirst"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_thirst")
+max_value = 100.0
+step = 0.01
+value = 100.0
+show_percentage = false
