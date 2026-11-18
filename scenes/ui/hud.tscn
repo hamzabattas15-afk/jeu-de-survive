@@ -1,24 +1,62 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/crafting_menu.tscn" id="2_crafting"]
 [ext_resource type="PackedScene" path="res://scenes/ui/stats_hud.tscn" id="3_stats"]
 [ext_resource type="PackedScene" path="res://scenes/ui/death_screen.tscn" id="4_death"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inventory"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.055, 0.075, 0.065, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.5, 0.4, 0.45)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hud")
 
-[node name="ResourceLabel" type="Label" parent="."]
+[node name="InventoryPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(280, 0)
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 216.0
-offset_bottom = 300.0
+offset_right = 296.0
+offset_bottom = 120.0
 mouse_filter = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "Wood: 0\nStone: 0\nCampfires [F]: 0\nRaw meat: 0\nCooked meat [R]: 0"
+theme_override_styles/panel = SubResource("StyleBoxFlat_inventory")
+
+[node name="Content" type="VBoxContainer" parent="InventoryPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="InventoryPanel/Content"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.8, 0.88, 0.8, 1)
+text = "INVENTORY"
+
+[node name="InventoryScroll" type="ScrollContainer" parent="InventoryPanel/Content"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+mouse_filter = 1
+focus_mode = 0
+horizontal_scroll_mode = 0
+
+[node name="ItemList" type="VBoxContainer" parent="InventoryPanel/Content/InventoryScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
 
 [node name="TimeLabel" type="Label" parent="."]
 anchors_preset = 1

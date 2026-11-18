@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene format=3 uid="uid://dq2gvun48j0em"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://scenes/items/tree.tscn" id="3_tree"]
 [ext_resource type="PackedScene" path="res://scenes/items/rock.tscn" id="4_rock"]
-[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="5_day_night"]
-
+[ext_resource type="Script" uid="uid://d0qmh0r7uuhu1" path="res://scripts/day_night_cycle.gd" id="5_day_night"]
 [ext_resource type="PackedScene" path="res://scenes/world/pond.tscn" id="6_pond"]
 [ext_resource type="PackedScene" path="res://scenes/items/dirt.tscn" id="7_dirt"]
 [ext_resource type="PackedScene" path="res://scenes/items/straw.tscn" id="8_straw"]
@@ -17,15 +16,10 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.6
 reflected_light_source = 1
-ssao_enabled = false
-ssr_enabled = false
-glow_enabled = false
-volumetric_fog_enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.28, 0.48, 0.22, 1)
 metallic_specular = 0.0
-roughness = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ground"]
 material = SubResource("StandardMaterial3D_ground")
@@ -34,127 +28,102 @@ size = Vector3(100, 1, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(100, 1, 100)
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=2080452242]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=948066875]
 environment = SubResource("Environment_world")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-55, -30, 0)
-light_energy = 1.0
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1260509019]
+transform = Transform3D(0.8660254, 0.40957603, -0.28678823, 0, 0.57357645, 0.81915206, 0.5, -0.7094065, 0.49673176, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 30.0
 
-[node name="Ground" type="StaticBody3D" parent="."]
-position = Vector3(0, -0.5, 0)
-collision_layer = 1
-collision_mask = 1
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1910915293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=359625031]
 mesh = SubResource("BoxMesh_ground")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=259998889]
 shape = SubResource("BoxShape3D_ground")
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector3(0, 0.05, 0)
+[node name="Player" parent="." unique_id=2035560388 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018764496, 0.011554707, 0.034183502)
 
-[node name="HUD" parent="." instance=ExtResource("2_hud")]
+[node name="HUD" parent="." unique_id=25313867 instance=ExtResource("2_hud")]
 
-[node name="Trees" type="Node3D" parent="."]
+[node name="Trees" type="Node3D" parent="." unique_id=1561514664]
 
-[node name="Tree01" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(-2, 0, -4)
+[node name="Tree01" parent="Trees" unique_id=2081892451 instance=ExtResource("3_tree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="Tree02" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(4, 0, -7)
-rotation_degrees = Vector3(0, 25, 0)
+[node name="Tree02" parent="Trees" unique_id=1739480700 instance=ExtResource("3_tree")]
+transform = Transform3D(0.90630776, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.90630776, 4, 0, -7)
 
-[node name="Tree03" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(-8, 0, -9)
-rotation_degrees = Vector3(0, 65, 0)
+[node name="Tree03" parent="Trees" unique_id=1353267857 instance=ExtResource("3_tree")]
+transform = Transform3D(0.42261824, 0, 0.9063078, 0, 1, 0, -0.9063078, 0, 0.42261824, -8, 0, -9)
 
-[node name="Tree04" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(10, 0, -14)
-rotation_degrees = Vector3(0, 110, 0)
+[node name="Tree04" parent="Trees" unique_id=1214377277 instance=ExtResource("3_tree")]
+transform = Transform3D(-0.34202012, 0, 0.9396926, 0, 1, 0, -0.9396926, 0, -0.34202012, 10, 0, -14)
 
-[node name="Tree05" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(-14, 0, -4)
-rotation_degrees = Vector3(0, 145, 0)
+[node name="Tree05" parent="Trees" unique_id=1204927878 instance=ExtResource("3_tree")]
+transform = Transform3D(-0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, -0.81915206, -14, 0, -4)
 
-[node name="Tree06" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(15, 0, 5)
-rotation_degrees = Vector3(0, 180, 0)
+[node name="Tree06" parent="Trees" unique_id=292299122 instance=ExtResource("3_tree")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 15, 0, 5)
 
-[node name="Tree07" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(4, 0, 13)
-rotation_degrees = Vector3(0, 210, 0)
+[node name="Tree07" parent="Trees" unique_id=1508133456 instance=ExtResource("3_tree")]
+transform = Transform3D(-0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660254, 4, 0, 13)
 
-[node name="Tree08" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(-7, 0, 14)
-rotation_degrees = Vector3(0, 245, 0)
+[node name="Tree08" parent="Trees" unique_id=1550840782 instance=ExtResource("3_tree")]
+transform = Transform3D(-0.42261818, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, -0.42261818, -7, 0, 14)
 
-[node name="Tree09" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(-18, 0, 12)
-rotation_degrees = Vector3(0, 285, 0)
+[node name="Tree09" parent="Trees" unique_id=1827870626 instance=ExtResource("3_tree")]
+transform = Transform3D(0.258819, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.258819, -18, 0, 12)
 
-[node name="Tree10" parent="Trees" instance=ExtResource("3_tree")]
-position = Vector3(19, 0, -10)
-rotation_degrees = Vector3(0, 320, 0)
+[node name="Tree10" parent="Trees" unique_id=70280024 instance=ExtResource("3_tree")]
+transform = Transform3D(0.7660443, 0, -0.64278775, 0, 1, 0, 0.64278775, 0, 0.7660443, 19, 0, -10)
 
-[node name="Rocks" type="Node3D" parent="."]
+[node name="Rocks" type="Node3D" parent="." unique_id=232192370]
 
-[node name="Rock01" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(2, 0, -3)
+[node name="Rock01" parent="Rocks" unique_id=1124238803 instance=ExtResource("4_rock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
 
-[node name="Rock02" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(6, 0, -4)
-rotation_degrees = Vector3(0, 35, 0)
+[node name="Rock02" parent="Rocks" unique_id=1388328805 instance=ExtResource("4_rock")]
+transform = Transform3D(0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, 0.81915206, 6, 0, -4)
 
-[node name="Rock03" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(-5, 0, -6)
-rotation_degrees = Vector3(0, 70, 0)
+[node name="Rock03" parent="Rocks" unique_id=1806465210 instance=ExtResource("4_rock")]
+transform = Transform3D(0.34202015, 0, 0.9396926, 0, 1, 0, -0.9396926, 0, 0.34202015, -5, 0, -6)
 
-[node name="Rock04" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(11, 0, -9)
-rotation_degrees = Vector3(0, 105, 0)
+[node name="Rock04" parent="Rocks" unique_id=240780150 instance=ExtResource("4_rock")]
+transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 11, 0, -9)
 
-[node name="Rock05" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(-11, 0, 2)
-rotation_degrees = Vector3(0, 145, 0)
+[node name="Rock05" parent="Rocks" unique_id=805429825 instance=ExtResource("4_rock")]
+transform = Transform3D(-0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, -0.81915206, -11, 0, 2)
 
-[node name="Rock06" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(8, 0, 8)
-rotation_degrees = Vector3(0, 190, 0)
+[node name="Rock06" parent="Rocks" unique_id=1119267994 instance=ExtResource("4_rock")]
+transform = Transform3D(-0.9848077, 0, -0.17364822, 0, 1, 0, 0.17364822, 0, -0.9848077, 8, 0, 8)
 
-[node name="Rock07" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(-2, 0, 9)
-rotation_degrees = Vector3(0, 240, 0)
+[node name="Rock07" parent="Rocks" unique_id=980402931 instance=ExtResource("4_rock")]
+transform = Transform3D(-0.4999999, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, -0.4999999, -2, 0, 9)
 
-[node name="Rock08" parent="Rocks" instance=ExtResource("4_rock")]
-position = Vector3(-16, 0, -12)
-rotation_degrees = Vector3(0, 300, 0)
+[node name="Rock08" parent="Rocks" unique_id=76997352 instance=ExtResource("4_rock")]
+transform = Transform3D(0.4999999, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.4999999, -16, 0, -12)
 
-[node name="DayNightCycle" type="Node" parent="." node_paths=PackedStringArray("sun", "world_environment")]
+[node name="DayNightCycle" type="Node" parent="." unique_id=1812040672 node_paths=PackedStringArray("sun", "world_environment")]
 script = ExtResource("5_day_night")
 sun = NodePath("../DirectionalLight3D")
 world_environment = NodePath("../WorldEnvironment")
 
-[node name="Pond" parent="." instance=ExtResource("6_pond")]
-position = Vector3(0, 0.01, -14)
-[node name="Dirt" parent="." instance=ExtResource("7_dirt")]
-position = Vector3(-4, 0, -12)
-[node name="Straw" parent="." instance=ExtResource("8_straw")]
-position = Vector3(4, 0, -12)
+[node name="Pond" parent="." unique_id=543164002 instance=ExtResource("6_pond")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -14)
+
+[node name="Dirt" parent="." unique_id=243175623 instance=ExtResource("7_dirt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="Straw" parent="." unique_id=1871699141 instance=ExtResource("8_straw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -12)
 
 [connection signal="interaction_prompt_changed" from="Player" to="HUD" method="_on_interaction_prompt_changed"]
 [connection signal="time_changed" from="DayNightCycle" to="HUD" method="_on_time_changed"]
-[connection signal="placement_feedback" from="Player/CampfirePlacement" to="HUD" method="_on_placement_feedback"]
-[connection signal="health_changed" from="Player/PlayerStats" to="HUD/StatsHUD" method="_on_health_changed"]
-[connection signal="hunger_changed" from="Player/PlayerStats" to="HUD/StatsHUD" method="_on_hunger_changed"]
-[connection signal="thirst_changed" from="Player/PlayerStats" to="HUD/StatsHUD" method="_on_thirst_changed"]
-[connection signal="player_died" from="Player/PlayerStats" to="HUD/DeathScreen" method="_on_player_died"]
-
-[connection signal="placement_feedback" from="Player/WaterFilterPlacement" to="HUD" method="_on_placement_feedback"]
-[connection signal="build_feedback" from="Player/BuildMode" to="HUD" method="_on_placement_feedback"]
