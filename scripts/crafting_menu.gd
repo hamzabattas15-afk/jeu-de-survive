@@ -22,6 +22,8 @@ func _ready() -> void:
 		_recipe_buttons.append(button)
 	_close_button.pressed.connect(_set_open.bind(false))
 	Inventory.inventory_changed.connect(_refresh_buttons)
+	Crafting.busy_changed.connect(_on_busy_changed)
+	Crafting.craft_completed.connect(_on_craft_completed)
 	_refresh_buttons()
 
 
@@ -36,6 +38,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _exit_tree() -> void:
+	Inventory.inventory_changed.disconnect(_refresh_buttons)
+	Crafting.busy_changed.disconnect(_on_busy_changed)
+	Crafting.craft_completed.disconnect(_on_craft_completed)
+	# Scene exit/restart cancels the job; merely closing the menu does not.
+	Crafting.cancel_craft()
 	if visible:
 		Input.mouse_mode = _previous_mouse_mode
 
@@ -84,7 +91,16 @@ func _get_cost_text(recipe: Recipe) -> String:
 
 func _on_recipe_pressed(recipe: Recipe) -> void:
 	if Crafting.craft(recipe):
-		_status_label.text = "Crafted %s x%d." % [recipe.name, recipe.amount]
+		if recipe.duration_seconds > 0.0:
+			_status_label.text = "Crafting %s..." % recipe.name
 	else:
-		_status_label.text = "Not enough ingredients to craft."
+		_status_label.text = "Busy or not enough ingredients to craft."
 		_refresh_buttons()
+
+
+func _on_busy_changed(_is_busy: bool) -> void:
+	_refresh_buttons()
+
+
+func _on_craft_completed(recipe_name: String, amount: int) -> void:
+	_status_label.text = "Crafted %s x%d." % [recipe_name, amount]

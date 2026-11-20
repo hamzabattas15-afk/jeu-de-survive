@@ -6,8 +6,8 @@
 script = ExtResource("1_recipe")
 name = "Stone Axe"
 ingredients = {
-"stone": 3,
-"wood": 2
+"wood": 3,
+"flint": 2
 }
 result_item = "stone_axe"
 amount = 1

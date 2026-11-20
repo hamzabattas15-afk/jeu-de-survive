@@ -1,3 +1,4 @@
+class_name BuildMode
 extends Node
 
 signal build_feedback(message: String)
@@ -26,6 +27,10 @@ func _ready() -> void:
 	add_child(_ghost)
 	_ghost.top_level = true
 	_ghost.hide()
+
+
+func is_active() -> bool:
+	return _active
 
 
 func _unhandled_input(event: InputEvent) -> void:

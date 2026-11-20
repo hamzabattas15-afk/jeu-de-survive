@@ -53,7 +53,7 @@ func interact(_player: Node3D) -> void:
 		_collision_shape.set_deferred("disabled", true)
 		# Finish the last hit's feedback before hiding and starting the respawn timer.
 		_hit_tween.tween_callback(_finish_depletion)
-	Inventory.add_item(resource_type, amount_per_hit)
+	Inventory.add_item(resource_type, amount_per_hit * Equipment.get_gather_multiplier(resource_type))
 
 
 func _show_hit_feedback() -> void:

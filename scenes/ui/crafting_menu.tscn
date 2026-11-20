@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/crafting_menu.gd" id="1_menu"]
 [ext_resource type="Script" path="res://scripts/recipe.gd" id="2_recipe"]
@@ -9,6 +9,7 @@
 
 [ext_resource type="Resource" path="res://assets/recipes/water_filter.tres" id="7_filter"]
 [ext_resource type="Resource" path="res://assets/recipes/mud_brick.tres" id="8_brick"]
+[ext_resource type="Resource" path="res://assets/recipes/flint.tres" id="9_flint"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 20.0
@@ -42,7 +43,7 @@ grow_vertical = 2
 mouse_filter = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 script = ExtResource("1_menu")
-recipes = Array[ExtResource("2_recipe")]([ExtResource("3_spear"), ExtResource("4_axe"), ExtResource("5_torch"), ExtResource("6_campfire"), ExtResource("7_filter"), ExtResource("8_brick")])
+recipes = Array[ExtResource("2_recipe")]([ExtResource("9_flint"), ExtResource("3_spear"), ExtResource("4_axe"), ExtResource("5_torch"), ExtResource("6_campfire"), ExtResource("7_filter"), ExtResource("8_brick")])
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2

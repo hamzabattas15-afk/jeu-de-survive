@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/world/pond.tscn" id="6_pond"]
 [ext_resource type="PackedScene" path="res://scenes/items/dirt.tscn" id="7_dirt"]
 [ext_resource type="PackedScene" path="res://scenes/items/straw.tscn" id="8_straw"]
+[ext_resource type="PackedScene" path="res://scenes/animals/rabbit.tscn" id="9_rabbit"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -124,6 +125,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
 
 [node name="Straw" parent="." unique_id=1871699141 instance=ExtResource("8_straw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -12)
+
+[node name="Rabbit" parent="." instance=ExtResource("9_rabbit")]
+position = Vector3(3, 0.3, 2)
 
 [connection signal="interaction_prompt_changed" from="Player" to="HUD" method="_on_interaction_prompt_changed"]
 [connection signal="time_changed" from="DayNightCycle" to="HUD" method="_on_time_changed"]

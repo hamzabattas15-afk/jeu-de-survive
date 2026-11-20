@@ -17,9 +17,11 @@ signal interaction_prompt_changed(prompt_text: String)
 
 var _gravity: float = float(ProjectSettings.get_setting("physics/3d/default_gravity", 9.8))
 var _interaction_prompt: String = ""
+var is_busy: bool = false
 
 
 func _ready() -> void:
+	Crafting.busy_changed.connect(func(busy: bool) -> void: is_busy = busy)
 	_spring_arm.add_excluded_object(get_rid())
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -56,6 +58,8 @@ func _physics_process(delta: float) -> void:
 	var input_direction: Vector2 = Input.get_vector(
 		"move_left", "move_right", "move_forward", "move_back"
 	)
+	if is_busy:
+		input_direction = Vector2.ZERO
 	# The pivot only rotates in yaw, so camera pitch cannot affect movement speed.
 	var move_direction: Vector3 = _camera_pivot.global_transform.basis * Vector3(
 		input_direction.x, 0.0, input_direction.y
@@ -68,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity.y -= _gravity * delta
-	elif Input.is_action_just_pressed("jump"):
+	elif not is_busy and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_velocity
 
 	move_and_slide()

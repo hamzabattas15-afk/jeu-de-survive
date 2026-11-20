@@ -22,6 +22,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 Inventory="*res://autoload/inventory.gd"
 Crafting="*res://autoload/crafting.gd"
+Equipment="*res://autoload/equipment.gd"
 
 [input]
 
@@ -94,6 +95,39 @@ build_place={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":32,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
+}
+
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"button_index":1)]
+}
+hotbar_1={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":49)]
+}
+hotbar_2={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":50)]
+}
+hotbar_3={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":51)]
+}
+hotbar_4={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":52)]
+}
+hotbar_5={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":53)]
+}
+hotbar_previous={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"button_index":4)]
+}
+hotbar_next={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"button_index":5)]
 }
 
 [rendering]
